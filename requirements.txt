@@ -4,7 +4,7 @@ uvicorn[standard]==0.29.0
 gunicorn==22.0.0
 
 # DB
-pymongo==4.7.2
+pymongo==4.9.1          # 4.9+ trae wheels cp313 (4.7 compilaba en Python 3.13)
 python-dotenv==1.0.1
 
 # Auth
@@ -14,8 +14,8 @@ bcrypt==4.0.1            # pin: passlib 1.7.4 se rompe con bcrypt>=4.1/5.x
 python-multipart==0.0.9
 
 # Validación (Pydantic v2 — el código usa model_config / pydantic_settings)
-pydantic==2.7.1
-pydantic-settings==2.2.1
+pydantic==2.9.2         # pydantic-core 2.23.4 trae wheels cp313 → sin compilar Rust en Render
+pydantic-settings==2.5.2
 email-validator==2.1.1  # requerido por EmailStr
 
 # Tests

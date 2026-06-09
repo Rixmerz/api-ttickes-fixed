@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: api-ttickes
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -k uvicorn.workers.UvicornWorker main:app
+    envVars:
+      # Doble seguro: las deps ya traen wheels para 3.11–3.13 (sin Rust),
+      # pero fijamos 3.11 explícitamente.
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      # Completar en el dashboard (sync:false = no se versiona).
+      # Incluir el nombre de la base en la URI: …mongodb.net/soporte?...
+      - key: DATABASE_URL
+        sync: false
+      - key: COLECCION
+        value: colecciontest0
+      - key: SECRET_KEY
+        generateValue: true
